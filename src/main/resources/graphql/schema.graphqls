@@ -1,0 +1,42 @@
+# schema
+type Employee{
+    id: ID!
+    name: String
+    salary: String
+    departmentId: ID!
+}
+
+type Deparment {
+    id: ID!
+    name: String
+    employees: [Employee]
+}
+
+input EmployeeInput {
+    name: String
+    salary: String
+    departmentId: ID!
+}
+
+input SalaryInput {
+    employeeId: ID!
+    salary: String!
+}
+
+# reslover
+type Mutation {
+    addEmployee(employeeInput: EmployeeInput): Employee
+    updateSalary(salaryInput: SalaryInput): Employee
+}
+
+type Subscription {
+    allEmployee: Employee
+}
+
+type Query {
+    employeeByName(employeeName: String): [Employee]
+    allDepartment: [Deparment]
+}
+
+
+
